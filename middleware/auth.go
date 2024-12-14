@@ -1,7 +1,6 @@
 package middleware
 
 import (
-	"fmt"
 	"net/http"
 	"os"
 	"strings"
@@ -31,10 +30,6 @@ func AuthMiddleware(jwtService s.JWTService) gin.HandlerFunc {
 			c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
 			c.AbortWithStatus(http.StatusUnauthorized)
 			return
-		}
-
-		for key, val := range claims {
-			fmt.Printf("Key: %v, value: %v\n", key, val)
 		}
 		c.Set("xid", claims["xid"])
 		c.Next()

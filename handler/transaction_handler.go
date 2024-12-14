@@ -33,7 +33,6 @@ func (h *Handler) Deposit(c *gin.Context) {
 		c.JSON(http.StatusUnprocessableEntity, dto.FormatFail(err.Error()))
 		return
 	}
-	print(input.ReferenceID)
 	transaction, err := h.transactionService.Deposit(xid, input)
 
 	if err != nil {
