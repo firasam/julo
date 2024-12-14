@@ -25,8 +25,8 @@ services:
         - PGPORT= 5433
       healthcheck:
         test: "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"
-        interval: 2s
-        timeout: 5s
+        interval: 10s
+        timeout: 10s
         retries: 10
 volumes:
       postgres_data:
