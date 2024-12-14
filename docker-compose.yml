@@ -1,0 +1,32 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      DATABASE_URL: postgresql://postgres:julo123@db:5433/miniwallet
+      SECRET: julo
+      JWT_TTL: 100
+      API_VERSION: v1
+    depends_on:
+      db:
+        condition: service_healthy
+  db:
+      image: postgres:17
+      volumes:
+        - postgres_data:/var/lib/postgresql/data
+        - ./db.sql:/docker-entrypoint-initdb.d/db.sql
+      ports:
+        - "5433:5433"
+      environment:
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=julo123
+        - POSTGRES_DB=miniwallet
+        - PGPORT= 5433
+      healthcheck:
+        test: "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"
+        interval: 2s
+        timeout: 5s
+        retries: 10
+volumes:
+      postgres_data:
