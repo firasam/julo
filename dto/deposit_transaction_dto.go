@@ -6,7 +6,7 @@ import (
 
 type DepositRequest struct {
 	Amount      int    `form:"amount"`
-	ReferenceID string `form:"refrence_id"`
+	ReferenceID string `form:"reference_id"`
 }
 
 type DepositTransactionResponse struct {
