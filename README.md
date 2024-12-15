@@ -28,3 +28,7 @@ If you change `database.sql` file, you need to reinitate the database by running
 docker-compose down --volumes
 docker-compose up --build
 ```
+
+## Postman collection
+for all the api in this project you can import it to your postman using postman collections bellow
+julo.postman_collection.json
